@@ -19,6 +19,7 @@ public class PesanActivity extends AppCompatActivity {
 
     private Spinner dropKdMenu;
     private Button btnInput;
+    private EditText edtTanggal, edtJam, edtNoMeja, edtHarga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +31,31 @@ public class PesanActivity extends AppCompatActivity {
         dropKdMenu = findViewById(R.id.dropKdMenu);
         btnInput = findViewById(R.id.btnTambah);
 
-        ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arrMenu);
+        edtTanggal = findViewById(R.id.edtTanggal);
+        edtJam = findViewById(R.id.edtJam);
+        edtNoMeja = findViewById(R.id.edtNoMeja);
+        edtHarga = findViewById(R.id.edtHarga);
+
+        ArrayAdapter<String> menuAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, arrMenu);
         menuAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropKdMenu.setAdapter(menuAdapter);
 
         btnInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PesanActivity.this, "Pesanan Dimasukkan", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(PesanActivity.this, MainActivity.class));
-                finish();
+                if (!isEmpty()){
+                    Toast.makeText(PesanActivity.this, "Pesanan Dimasukkan", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PesanActivity.this, MainActivity.class));
+                    finish();
+                }else {
+                    Toast.makeText(PesanActivity.this, "Isi semua data!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    boolean isEmpty(){
+        return (TextUtils.isEmpty(edtHarga.getText().toString()) || TextUtils.isEmpty(edtJam.getText().toString()) || TextUtils.isEmpty(edtNoMeja.getText().toString()) || TextUtils.isEmpty(edtTanggal.getText().toString()));
     }
 }
