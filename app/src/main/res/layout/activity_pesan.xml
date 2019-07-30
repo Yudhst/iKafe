@@ -33,6 +33,7 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="date"
+        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -64,6 +65,7 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="time"
+        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
